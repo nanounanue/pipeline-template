@@ -133,5 +133,8 @@ site/
 
 # De la construcción de imágenes y contenedores
 **/.built*
+**/*_built*
 **/.data_built*
+**/.infrastructure_built*
+**/.network_built*
 **/.running*
