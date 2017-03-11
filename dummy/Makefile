@@ -1,3 +1,4 @@
+SHELL := /bin/bash 
 PROJECT_NAME:=dummy
 DATA_DIRECTORY:=$(CURDIR)/../data
 IMAGES = test-r test-python test-pyspark

@@ -3,7 +3,7 @@
 ########################################
 ##            Variables               ##
 ########################################
-
+SHELL := /bin/bash 
 PROJECT_NAME:=dummy
 DATA_DIRECTORY:=$(CURDIR)/../data
 

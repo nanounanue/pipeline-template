@@ -4,7 +4,7 @@
 ##            Variables               ##
 ########################################
 
-PROJECT_NAME:=dpa_test
+PROJECT_NAME:=`cat .project-name`
 
 ## Versión de python
 VERSION_PYTHON:=`cat .version-python`
@@ -12,6 +12,7 @@ VERSION_PYTHON:=`cat .version-python`
 ## Bucket de amazon
 S3_BUCKET :=
 
+SHELL := /bin/bash 
 
 ########################################
 ##            Ayuda                   ##
@@ -143,7 +144,7 @@ remove: uninstall  ##@proyecto Destruye la imágenes del pipeline y desinstala e
 
 set_project_name: ##@proyecto Renombra el proyecto de dpa_test a PROJECT_NAME (requiere ag 'silver searcher')
   ## Basado en http://stackoverflow.com/a/39284776/754176
-	@ag [dD]ummy -l0 | xargs -0 sed -i 's/[dD]ummy/${PROJECT_NAME}/g'
+	@ag [dD]ummy -l0 | xargs -0 sed -i  "s/[dD]ummy/${PROJECT_NAME}/g"
 	## Renombrar la carpeta del proyecto
 	@[[ -d dummy ]] && mv dummy/pipelines/dummy.py dummy/pipelines/$(PROJECT_NAME).py
 	@[[ -d dummy ]] && mv dummy $(PROJECT_NAME)
