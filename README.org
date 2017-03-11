@@ -1,0 +1,67 @@
+* /Pipeline template/
+
+Plantilla para /pipelines/ usando ~Luigi~
+
+
+** Instrucciones
+
+1. Crea 5 nodos usando =docker-machine=, por ejemplo usando =virtualbox= como
+   =driver=
+
+#+BEGIN_SRC sh 
+export MACHINE_DRIVER=virtualbox
+for N in $(seq 1 5); do
+   docker-machine create node$N
+done
+#+END_SRC
+
+2. Crea un =swarm=
+
+
+#+BEGIN_SRC sh 
+eval $(docker-machine env node1)
+
+docker swarm init --advertise-addr $(docker-machine ip node1)
+
+TOKEN=$(docker swarm join-token -q manager)
+for N in $(seq 2 5); do
+  eval $(docker-machine env node$N)
+  docker swarm join --token $TOKEN $(docker-machine  ip node1):2377
+done
+eval $(docker-machine env node1)
+
+
+docker node ls
+#+END_SRC
+
+*NOTA*: Si tienes problemas, ingresa a cada una de las máquinas
+
+
+
+3. Crea un =registry= local al =swarm=
+
+#+BEGIN_SRC sh 
+docker service create --name registry --publish 5000:5000 registry:2
+#+END_SRC
+
+
+4. Clona el repositorio en el =nodo1=
+
+4. Registra las imágenes contenidas en =infraestructura=
+
+#+BEGIN_SRC sh 
+SERVICE=base
+PROJECT_NAME=pipeline-template
+DOCKER_REGISTRY=localhost:5000
+TAG=v0.1
+
+docker-compose build $SERVICE
+docker tag $PROJECT_NAME_$SERVICE $DOCKER_REGISTRY/$PROJECT_NAME_$SERVICE:$TAG
+docker push $DOCKER_REGISTRY/$PROJECT_NAME_$SERVICE
+
+curl localhost:5000/v2/_catalog
+#+END_SRC
+
+
+4. Ejecuta el =docker-compose.yml= contenido en la carpeta =infraestructura=
+

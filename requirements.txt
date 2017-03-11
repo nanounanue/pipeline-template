@@ -1,0 +1,4 @@
+luigi==2.5.0
+Click
+python-dotenv
+
