@@ -87,3 +87,51 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+
+# Porquerías de MacOS
+.DS_Store
+
+# Documentación de Sphinx
+docs/_build
+
+# Los datos no se suben a git
+**/data/
+
+# Bases de datos
+*.db
+
+# Logs de instalación
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pruebas unitarias / Coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# Documentación de Mkdocs
+site/
+
+# Archivos de datos
+*.xlsx
+*.dat
+*.csv
+*.tsv
+*.psv
+*.sqlite
+*.doc*
+*.xls*
+*.pdf
+*.ppt*
+*.sqlite
+
+# De la construcción de imágenes y contenedores
+**/.built*
+**/.data_built*
+**/.running*
