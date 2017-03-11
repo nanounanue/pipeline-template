@@ -5,12 +5,13 @@
 ########################################
 
 PROJECT_NAME:=`cat .project-name`
+PROJECT_VERSION:=`cat .project-version`
 
 ## Versión de python
 VERSION_PYTHON:=`cat .version-python`
 
 ## Bucket de amazon
-S3_BUCKET :=
+S3_BUCKET := s3://$(PROJECT_NAME)/
 
 SHELL := /bin/bash 
 
@@ -44,6 +45,7 @@ pip-dev: requirements-dev.txt
 	@pip install -r $<
 
 info:
+	@echo Proyecto: $(PROJECT_NAME) ver. $(PROJECT_VERSION)
 	@python --version
 	@pyenv --version
 	@pip --version
@@ -190,6 +192,16 @@ HELP_FUN = \
 
 ## Verificando dependencias
 ## Basado en código de Fernando Cisneros @ datank
+
+
 EXECUTABLES = docker docker-compose docker-machine pyenv ag pip 
 TEST_EXEC := $(foreach exec,$(EXECUTABLES),\
-				$(if $(shell which $(exec)), some string, $(error "No está $(exec) en el PATH, considera revisar Google para instalarlo (Quizá 'apt-get install $(exec)' funcione...)")))
+				$(if $(shell which $(exec)), some string, $(error "ERROR: No está $(exec) en el PATH, considera revisar Google para instalarlo (Quizá 'apt-get install $(exec)' funcione...)")))
+
+
+TEST_PROJECT_NAME_2 := [[ 'dummy' == $(cat .project-name) ]] && $(error "ERROR: El nombre del proyecto no puede ser 'dummy', por favor utiliza otro nombre")
+#$(if [ 'dummy' == $(cat .project-name) ] ; then\ $(error "ERROR: El nombre del proyecto no puede ser 'dummy', por favor utiliza otro nombre");\ fi)
+#TEST_PROJECT_NAME_1 := if [ ! -f .project-name ]; then \
+#	                         $(error "ERROR: Debes de crear un archivo .project-name, el cual debe de contener el nombre del proyecto, (e.g dragonfly)") ; \
+#                       fi
+

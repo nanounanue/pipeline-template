@@ -3,7 +3,13 @@
 Plantilla para /pipelines/ usando ~Luigi~
 
 
-** Instrucciones
+
+
+** Instrucciones rápidas
+
+** Prerequisitos
+
+** Instalando
 
 1. Crea 5 nodos usando =docker-machine=, por ejemplo usando =virtualbox= como
    =driver=
@@ -65,3 +71,25 @@ curl localhost:5000/v2/_catalog
 
 4. Ejecuta el =docker-compose.yml= contenido en la carpeta =infraestructura=
 
+
+** Ejecutando pruebas
+
+** /Deployment/
+
+
+** Construido con...
+
+   - [[some.url][Some URL]]
+   -
+   -
+
+** ¿Cómo contribuir?
+
+
+** Autores
+
+** Licencia
+
+** Agradecimientos
+
+ - Plantilla de [[https://gist.github.com/PurpleBooth/109311bb0361f32d87a2][=README=]] 
