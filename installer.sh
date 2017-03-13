@@ -14,13 +14,19 @@ git init ${PROJECT_NAME}
 
 cd ${PROJECT_NAME}
 
-git remote add "template" https://github.com/${USERNAME}/pipeline-template.git
+git remote add "template" https://github.com/nanounanue/pipeline-template.git
 
 git pull template master
 
 echo ${PROJECT_NAME} > .project-name
 
+
+
 hub create ${USERNAME}/${PROJECT_NAME}
+
+git add .project-name
+
+git commit -m "Ajustando el nombre del proyecto a ${PROJECT_NAME}"
 
 git push origin master
 
@@ -28,7 +34,7 @@ git flow init -d
 
 git checkout develop
 
-make help 
+make help
 
 
 
