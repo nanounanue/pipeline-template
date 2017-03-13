@@ -205,7 +205,7 @@ HELP_FUN = \
 ## Verificando dependencias
 ## Basado en código de Fernando Cisneros @ datank
 
-EXECUTABLES = docker docker-compose docker-machine pyenv ag pip 
+EXECUTABLES = docker docker-compose docker-machine pyenv ag pip hub
 TEST_EXEC := $(foreach exec,$(EXECUTABLES),\
 				$(if $(shell which $(exec)), some string, $(error "${BOLD}${RED}ERROR${RESET}: No está $(exec) en el PATH, considera revisar Google para instalarlo (Quizá 'apt-get install $(exec)' funcione...)")))
 
