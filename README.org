@@ -9,7 +9,21 @@ Plantilla para /pipelines/ usando ~Luigi~
 
 ** Prerequisitos
 
+- =docker=
+- =hub=
+- =git flow=
+- =docker-compose=
+- =docker-machine=
+
 ** Instalando
+
+
+1. Copia el template a un repositorio  tuyo (en el ejemplo nanounanue, e.g. mi
+   usuario de github) especificando el nombre del proyecto que quieres jitomate
+
+#+BEGIN_SRC sh
+curl -fsSL https://raw.githubusercontent.com/nanounanue/pipeline-template/master/installer.sh | bash -- /dev/stdin -p jitomate -u nanounanue
+#+END_SRC
 
 1. Crea 5 nodos usando =docker-machine=, por ejemplo usando =virtualbox= como
    =driver=
@@ -47,7 +61,7 @@ docker node ls
 3. Crea un =registry= local al =swarm=
 
 #+BEGIN_SRC sh 
-docker service create --name registry --publish 5000:5000 registry:2
+ docker service create --name registry --publish 5000:5000 registry:2
 #+END_SRC
 
 
@@ -56,20 +70,15 @@ docker service create --name registry --publish 5000:5000 registry:2
 4. Registra las imágenes contenidas en =infraestructura=
 
 #+BEGIN_SRC sh 
-SERVICE=base
-PROJECT_NAME=pipeline-template
-DOCKER_REGISTRY=localhost:5000
-TAG=v0.1
-
-docker-compose build $SERVICE
-docker tag $PROJECT_NAME_$SERVICE $DOCKER_REGISTRY/$PROJECT_NAME_$SERVICE:$TAG
-docker push $DOCKER_REGISTRY/$PROJECT_NAME_$SERVICE
-
-curl localhost:5000/v2/_catalog
+infraestructura/registrar.sh 
 #+END_SRC
 
 
-4. Ejecuta el =docker-compose.yml= contenido en la carpeta =infraestructura=
+4. Instala y ejecuta el pipeline 
+
+#+BEGIN_SRC sh 
+make run 
+#+END_SRC
 
 
 ** Ejecutando pruebas
