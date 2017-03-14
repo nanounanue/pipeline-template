@@ -20,8 +20,6 @@ git pull template master
 
 echo ${PROJECT_NAME} > .project-name
 
-
-
 hub create ${USERNAME}/${PROJECT_NAME}
 
 git add .project-name
