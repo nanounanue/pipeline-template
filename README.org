@@ -76,7 +76,12 @@ infraestructura/registrar.sh
 
 4. Instala y ejecuta el pipeline 
 
+
+
+
 #+BEGIN_SRC sh 
+make setup 
+
 make run 
 #+END_SRC
 
