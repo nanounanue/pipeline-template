@@ -1,5 +1,5 @@
 SHELL := /bin/bash 
-PROJECT_NAME:=dummy
+PROJECT_NAME:=$(shell cat ../.project-name)
 DATA_DIRECTORY:=$(CURDIR)/../data
 IMAGES = test-r test-python test-pyspark
 
@@ -12,10 +12,9 @@ build: .built .built-local-storage
 	@touch .built
 
 .built-local-storage:
-	@[[ -z $(docker volume ls | grep $(PROJECT_NAME)_store) ]] && docker volume create --name $(PROJECT_NAME)_store \
-                                                               --opt type=none \
-                                                               --opt device=$(DATA_DIRECTORY) \
-                                                               --opt o=bind
+	@if [ -z $(docker volume ls | grep $(PROJECT_NAME)_store) ]; then \
+     docker volume create --name $(PROJECT_NAME)_store --opt type=none --opt device=$(DATA_DIRECTORY) --opt o=bind ; \
+   fi;
 	@touch .built-local-storage
 
 
@@ -30,3 +29,4 @@ clean_images:
 clean_storage:
 	@docker volume rm $(PROJECT_NAME)_store
 	@[ -f .built-local-storage ] && rm .built-local-storage
+
