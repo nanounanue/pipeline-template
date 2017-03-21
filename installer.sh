@@ -22,6 +22,10 @@ echo ${PROJECT_NAME} > .project-name
 
 hub create ${USERNAME}/${PROJECT_NAME}
 
+make set_project_name
+
+git add ./${PROJECT_NAME}
+
 git add .project-name
 
 git commit -m "Ajustando el nombre del proyecto a ${PROJECT_NAME}"

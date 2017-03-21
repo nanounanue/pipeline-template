@@ -143,7 +143,7 @@ sync_from_s3: ##@data Sincroniza los datos desde AWS S3
 ########################################
 
 run:       ##@proyecto Ejecuta el pipeline de datos
-	@LUIGI_CONFIG_PATH=./${PROJECT_NAME}/pipelines/luigi.cfg ${PROJECT_NAME} --server localhost --port 8082
+	$(MAKE) --directory=$(PROJECT_NAME) run
 
 setup: build install ##@proyecto Crea las imágenes del pipeline e instala el pipeline como paquete en el PYTHONPATH
 
