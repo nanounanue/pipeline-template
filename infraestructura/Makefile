@@ -8,7 +8,7 @@ PROJECT_NAME:=dummy
 DATA_DIRECTORY:=$(CURDIR)/../data
 
 IMAGES = base python r java luigi-server luigi-worker spark-client hadoop-client
-IMAGE_VERSION:=0.1
+IMAGE_VERSION:=0.2
 
 ########################################
 ##             Control                ##
