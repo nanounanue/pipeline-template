@@ -1,4 +1,4 @@
-FROM dpa/base:0.1
+FROM dpa/base:0.2
 
 MAINTAINER Adolfo De Unánue <nanounanue@gmail.com>
 
